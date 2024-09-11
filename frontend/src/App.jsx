@@ -8,7 +8,6 @@ function App() {
   const [isTyping, setIsTyping] = useState(false);
   const [theme, setTheme] = useState("dark");
 
-  // Toggle between light and dark themes
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
@@ -58,12 +57,12 @@ function App() {
     <main>
       <h1>Welcome to AI Chat Bot</h1>
 
-      {/* Theme toggle button */}
+      {}
       <button className="theme-toggle" onClick={toggleTheme}>
         Switch to {theme === "dark" ? "Light" : "Dark"} Theme
       </button>
 
-      {/* Chat section */}
+      {}
       <section>
         {Array.isArray(chats) && chats.length
           ? chats.map((chat, index) => (
@@ -82,14 +81,14 @@ function App() {
           : ""}
       </section>
 
-      {/* Typing indicator */}
+      {}
       <div className={isTyping ? "" : "hide"}>
         <p>
           <i>{isTyping ? "Typing..." : ""}</i>
         </p>
       </div>
 
-      {/* Input form */}
+      {}
       <form onSubmit={(e) => chat(e, message)}>
         <input
           type="text"

@@ -1,4 +1,4 @@
-/* Root variables for both light and dark themes */
+
 :root {
   --primary-bg: linear-gradient(135deg, #00b4db, #0083b0);
   --text-color-light: #1a1a1a;
@@ -14,7 +14,7 @@
   --transition: 0.3s ease;
 }
 
-/* Light Theme */
+
 html[data-theme="light"] {
   --text-color: var(--text-color-light);
   --background-color: var(--bg-light);
@@ -22,7 +22,6 @@ html[data-theme="light"] {
   --input-bg: var(--input-bg-light);
 }
 
-/* Dark Theme */
 html[data-theme="dark"] {
   --text-color: var(--text-color-dark);
   --background-color: var(--bg-dark);
@@ -30,7 +29,6 @@ html[data-theme="dark"] {
   --input-bg: var(--input-bg-dark);
 }
 
-/* Body and General Styling */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -119,7 +117,6 @@ input:focus {
   outline: none;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
   margin: 20px auto;
   padding: 10px 20px;
