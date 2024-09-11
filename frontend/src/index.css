@@ -7,7 +7,7 @@
   --input-bg-light: #f0f0f0;
   --text-color-dark: rgba(255, 255, 255, 0.87);
   --bg-dark: #242424;
-  --secondary-bg-dark: darkslategray;
+  --secondary-bg-dark: rgba(42, 150, 28, 0.712);
   --input-bg-dark: rgb(28, 23, 23);
   --border-radius: 25px;
   --box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -141,7 +141,6 @@ input:focus {
   box-shadow: 0 0 10px rgba(0, 131, 176, 0.5);
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;

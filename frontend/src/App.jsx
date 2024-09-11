@@ -1,29 +1,30 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import ReactMarkdown from "react-markdown";
 
 function App() {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
-  const [theme, setTheme] = useState("light"); // State to handle the theme
+  const [theme, setTheme] = useState("dark");
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
+  // Toggle between light and dark themes
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
   };
 
   const chat = async (e, message) => {
     e.preventDefault();
+
     if (!message) return;
     setIsTyping(true);
     scrollTo(0, 1e10);
 
-    let msgs = [...chats];
-    msgs.push({ role: "user", content: message });
-    setChats(msgs);
+    let newChats = [...chats];
+    newChats.push({ role: "user", content: message });
+    setChats(newChats);
 
     setMessage("");
 
@@ -33,13 +34,13 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chats: msgs,
+        chats: newChats,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (typeof data.output === "string") {
-          let updatedChats = [...chats];
+          let updatedChats = [...newChats];
           updatedChats.push({ role: "bot", content: data.output });
           setChats(updatedChats);
         } else {
@@ -55,13 +56,14 @@ function App() {
 
   return (
     <main>
-      <h1>FullStack Chat AI</h1>
+      <h1>Welcome to AI Chat Bot</h1>
 
       {/* Theme toggle button */}
-      <button onClick={toggleTheme} className="theme-toggle">
-        Switch to {theme === "light" ? "Dark" : "Light"} Theme
+      <button className="theme-toggle" onClick={toggleTheme}>
+        Switch to {theme === "dark" ? "Light" : "Dark"} Theme
       </button>
 
+      {/* Chat section */}
       <section>
         {Array.isArray(chats) && chats.length
           ? chats.map((chat, index) => (
@@ -70,19 +72,25 @@ function App() {
                   <b>{chat.role.toUpperCase()}</b>
                 </span>
                 <span>:</span>
-                <span>{chat.content}</span>
+                {chat.role === "bot" ? (
+                  <ReactMarkdown>{chat.content}</ReactMarkdown>
+                ) : (
+                  <span>{chat.content}</span>
+                )}
               </p>
             ))
           : ""}
       </section>
 
+      {/* Typing indicator */}
       <div className={isTyping ? "" : "hide"}>
         <p>
-          <i>{isTyping ? "Typing" : ""}</i>
+          <i>{isTyping ? "Typing..." : ""}</i>
         </p>
       </div>
 
-      <form action="" onSubmit={(e) => chat(e, message)}>
+      {/* Input form */}
+      <form onSubmit={(e) => chat(e, message)}>
         <input
           type="text"
           name="message"
