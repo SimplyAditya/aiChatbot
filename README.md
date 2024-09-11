@@ -50,7 +50,7 @@ The bot's responses are formatted with Markdown. For example, it can display **b
 
 ## Demo
 
-<img align="center" alt="Coding" width="1000" height="600" src="https://s4.ezgif.com/tmp/ezgif-4-672e9ce51d.gif">
+<img align="center" alt="Coding" width="1000" height="600" src="https://s4.ezgif.com/tmp/ezgif-4-0b400e2880.gif">
 
 ## Technologies Used
 
