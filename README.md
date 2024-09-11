@@ -57,7 +57,7 @@ Include a video to demonstrate the chatbot’s features. To embed a video from y
 
     ```html
     <video width="600" controls>
-      <source src="./videos/demo.mp4" type="video/mp4">
+      <source src=""C:\Users\user\Videos\Screen Recordings\aichatbot.mp4".mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     ```
