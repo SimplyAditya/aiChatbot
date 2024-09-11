@@ -55,12 +55,7 @@ Include a video to demonstrate the chatbot’s features. To embed a video from y
 1. Upload the video file to your project directory (e.g., inside a folder called `videos`).
 2. Embed the video in the README using HTML:
 
-    ```html
-    <video width="600" controls>
-      <source src=""C:\Users\user\Videos\Screen Recordings\aichatbot.mp4".mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    ```
+ <img align="right" alt="Coding" width="300" height="300" src="[https://media.giphy.com/media/bGgsc5mWoryfgKBx1u/giphy.gif](https://s4.ezgif.com/tmp/ezgif-4-672e9ce51d.gif)">
 
 ## Technologies Used
 
