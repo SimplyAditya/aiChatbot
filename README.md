@@ -50,12 +50,7 @@ The bot's responses are formatted with Markdown. For example, it can display **b
 
 ## Demo
 
-Include a video to demonstrate the chatbot’s features. To embed a video from your PC, follow these steps:
-
-1. Upload the video file to your project directory (e.g., inside a folder called `videos`).
-2. Embed the video in the README using HTML:
-
- <img align="right" alt="Coding" width="300" height="300" src="[https://media.giphy.com/media/bGgsc5mWoryfgKBx1u/giphy.gif](https://s4.ezgif.com/tmp/ezgif-4-672e9ce51d.gif)">
+<img align="right" alt="Coding" width="300" height="300" src="https://s4.ezgif.com/tmp/ezgif-4-672e9ce51d.gif">
 
 ## Technologies Used
 
