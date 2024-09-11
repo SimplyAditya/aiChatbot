@@ -141,7 +141,6 @@ input:focus::placeholder {
   50% { opacity: 0.5; }
 }
 
-/* Animations */
 p {
   animation: fadeInUp 0.4s ease-in-out;
 }
