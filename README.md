@@ -1,7 +1,3 @@
-Here's a template for your README file, including a section to add a video from your PC:
-
----
-
 # AI Chat Bot with Light/Dark Theme and Animations
 
 This is a React-based AI chatbot that integrates Markdown formatting and allows users to switch between light and dark themes. It also includes typing animations and user-friendly interface elements.
@@ -19,7 +15,7 @@ This is a React-based AI chatbot that integrates Markdown formatting and allows 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/username/your-repo.git
+    git clone https://github.com/khushalrajoria/Aichatbot.git
     ```
 
 2. Navigate to the project directory:
@@ -78,7 +74,3 @@ Replace `./videos/demo.mp4` with the actual path to your video.
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-Make sure to replace `username/your-repo` with the actual GitHub repository and upload the video file into the appropriate directory before committing.
