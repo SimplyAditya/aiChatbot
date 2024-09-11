@@ -16,7 +16,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 app.post("/", async (request, response) => {
   const { chats } = request.body;
 
-  const prompt = `You are AkliluGPT. You can help with graphic design tasks. ${chats.map((chat) => chat.content).join('\n')}`;
+  const prompt = `You are KhushalGPT. You can help with graphic design tasks. ${chats.map((chat) => chat.content).join('\n')}`;
 
   try {
     

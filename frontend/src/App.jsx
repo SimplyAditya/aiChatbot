@@ -49,7 +49,7 @@ function App() {
 
   return (
     <main>
-      <h1>FullStack Chat AI</h1>
+      <h1>Welcome to AI chat bot</h1>
 
       
 <section>
