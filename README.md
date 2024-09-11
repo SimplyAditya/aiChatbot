@@ -62,8 +62,6 @@ Include a video to demonstrate the chatbot’s features. To embed a video from y
     </video>
     ```
 
-Replace `./videos/demo.mp4` with the actual path to your video.
-
 ## Technologies Used
 
 - React.js
