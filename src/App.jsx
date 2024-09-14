@@ -2,7 +2,7 @@ import "./styles/App.css";
 import React from "react";
 import {useState, useEffect} from "react";
 import { Outlet } from "react-router-dom";
-import UseThemeContext, { ThemeContextProvider } from "./components/context/ThemeContext";
+import UseThemeContext, { ThemeContextProvider } from "./context/ThemeContext";
 
 function App() {
   const [theme,setTheme]= useState(UseThemeContext().theme);
@@ -17,9 +17,11 @@ function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
   return (
+    <div className="h-screen dark:bg-[#212121]">
       <ThemeContextProvider value={{theme, switchTheme}}>
       <Outlet />
       </ThemeContextProvider>
+    </div>
   );
 }
 
