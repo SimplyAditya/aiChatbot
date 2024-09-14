@@ -112,6 +112,7 @@ const SignUp = () => {
             backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            backgroundSize: "cover"
           }}
         >
           <h1 className="text-white text-5xl lg:text-9xl px-6 lg:px-10 font-bold font-serif outfit-font">

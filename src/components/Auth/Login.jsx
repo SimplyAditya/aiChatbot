@@ -26,8 +26,8 @@ const Login = () => {
       return;
     }
     setToggleAlert(false);
-    localStorage.setItem("jwt","aabcd");
-    // navigate("/home");
+    // localStorage.setItem("jwt","aabcd");
+    navigate("/chat");
   };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -45,8 +45,9 @@ const Login = () => {
             backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            backgroundSize: "cover"
           }}
-        >
+        >  
           <h1 className="text-white text-5xl lg:text-9xl px-6 lg:px-10 font-bold font-serif outfit-font">
             AI ChatBot
           </h1>
