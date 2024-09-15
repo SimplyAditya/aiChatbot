@@ -4,7 +4,7 @@ import backgroundImage from "../../assets/login-image.png";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-// import Alert from "./Alert";
+import Alert from "../elements/Alert.jsx";
 
 const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -37,7 +37,7 @@ const SignUp = () => {
   return (
     <div>
       {toggleAlert && (
-        <Alert alert="Invalid Email or Password" toggle={setToggleAlert} />
+        <Alert alert="Error Signing Up" toggle={setToggleAlert} />
       )}
       <div className="min-h-screen flex flex-col lg:flex-row">
       <div className="h-1/2 lg:h-screen lg:w-2/6 flex flex-col justify-around items-center bg-black">

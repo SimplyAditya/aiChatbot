@@ -58,8 +58,8 @@ const Home = () => {
             prompt: "Hey",
             response: "I am an AI Chatbot",
           },
-        ]
-        setChat(val)
+        ];
+        setChat(val);
       }, 3000);
     }
   };

@@ -18,11 +18,13 @@ const ChatInterface = (prop) => {
                 {chat.response}
               </h1>
             </div>
-          ): <div className="w-full flex justify-start">
-          <h1 className={`flex justify-start ${design} animate-bounce`}>
-            ...
-          </h1>
-        </div>}
+          ) : (
+            <div className="w-full flex justify-start">
+              <h1 className={`flex justify-start ${design} animate-bounce`}>
+                ...
+              </h1>
+            </div>
+          )}
         </div>
       ))}
     </div>
