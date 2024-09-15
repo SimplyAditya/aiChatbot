@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Alert from "../elements/Alert.jsx";
+import axios from "axios";
+import { apiContext } from "../../context/apiContext.js";
 
 const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -13,22 +15,29 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [buttonDisable, setButtonDisable] = useState(false);
   const [toggleAlert, setToggleAlert] = useState(false);
-
-  const GoToHome = (event) => {
+  const GoToHome = async (event) => {
     event.preventDefault();
-    if (email === "" || password === "") {
+    setButtonDisable(true);
+    if (name === "" || email === "" || password === "") {
       setError(true);
       return;
     }
     setError(false);
-    if (email !== "aabcd" || password !== "abcd") {
+    const response = await axios.post(apiContext.registerUrl, {
+      name: name,
+      email: email,
+      password: password,
+    });
+    if (response.data.type === "Success") {
       setToggleAlert(true);
-      return;
     }
-    setToggleAlert(false);
-    localStorage.setItem("jwt", "aabcd");
-    // navigate("/home");
+    // setToggleAlert(false);
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
+    setButtonDisable(false);
   };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -37,10 +46,14 @@ const SignUp = () => {
   return (
     <div>
       {toggleAlert && (
-        <Alert alert="Error Signing Up" toggle={setToggleAlert} />
+        <Alert
+          alert="User Created Successfully"
+          toggle={setToggleAlert}
+          color="green"
+        />
       )}
       <div className="min-h-screen flex flex-col lg:flex-row">
-      <div className="h-1/2 lg:h-screen lg:w-2/6 flex flex-col justify-around items-center bg-black">
+        <div className="h-1/2 lg:h-screen lg:w-2/6 flex flex-col justify-around items-center bg-black">
           <div></div>
           <div className="w-full lg:w-4/5 p-6 lg:px-8 ps-0">
             <h1 className="font-bold text-white text-3xl lg:text-5xl pb-4">
@@ -93,6 +106,7 @@ const SignUp = () => {
               )}
               <button
                 type="submit"
+                disabled={buttonDisable}
                 className="w-full p-2 rounded-xl bg-themeBlue text-white"
               >
                 Submit
@@ -101,7 +115,10 @@ const SignUp = () => {
           </div>
           <div className="text-white mb-4 lg:mb-12 flex justify-between items-center w-full lg:w-4/5 px-6 lg:px-8">
             <h1 className="text-xs lg:text-sm">Already have an account?</h1>
-            <button className="bg-themeBlue text-white py-1 px-3 rounded-lg" onClick={()=>navigate("/login")}>
+            <button
+              className="bg-themeBlue text-white py-1 px-3 rounded-lg"
+              onClick={() => navigate("/login")}
+            >
               Login
             </button>
           </div>
@@ -112,14 +129,13 @@ const SignUp = () => {
             backgroundImage: `url(${backgroundImage})`,
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
         >
           <h1 className="text-white text-5xl lg:text-9xl px-6 lg:px-10 font-bold font-serif outfit-font">
             AI ChatBot
           </h1>
         </div>
-        
       </div>
     </div>
   );

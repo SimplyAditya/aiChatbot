@@ -27,7 +27,7 @@ const checkAuthentication = async (req, res, next) => {
     }
   } catch (err) {
     console.log(err.message);
-    res.status(400),
+    res.status(400).
       send({
         type: "Failure",
         message: "Please Sign In Again",

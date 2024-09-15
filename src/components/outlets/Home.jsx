@@ -9,6 +9,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import UseThemeContext from "../../context/ThemeContext";
 import ChatInterface from "../elements/chatInterface";
+import apiContext from "../../context/apiContext";
+import axios from "axios";
+import { useData } from "../../hooks/chatHook";
+
 
 const Home = () => {
   const [prompt, setPrompt] = useState("");
@@ -16,51 +20,59 @@ const Home = () => {
   const textarearef = useRef(null);
   const navigate = useNavigate();
   const { theme, switchTheme } = UseThemeContext();
+  const token = localStorage.getItem("token");
 
-  const [chat, setChat] = useState([
-    {
-      prompt: "How are you ?",
-      response: "I am good",
-    },
-    {
-      prompt: "What's your name",
-      response: "I am an AI Chatbot",
-    },
-  ]);
+  const [chat, setChat] = useState([]);
   const handleInput = (e) => {
     const textarea = textarearef.current;
     textarea.style.height = "auto";
     textarea.style.height = `${Math.min(textarea.scrollHeight, 8 * 24)}px`;
     setPrompt(e.target.value);
   };
+  useEffect(() => {
+    const fetchChatData = async () => {
+      const data = await useData(token); // Load data using your chatHook
+      if (data) {
+        console.log(data)
+        setChat(data);
+      } else {
+        setChat([]); // Set chat as empty array if no data
+      }
+    };
 
-  const handleSubmit = (e) => {
+    fetchChatData();
+  }, [token]);
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (prompt === "") {
       return;
     } else {
       setLoading(true);
+      console.log(chat, prompt);
+      const chatsTill = chat;
       setChat([...chat, { prompt: `${prompt}` }]);
+      const promptToSend = prompt;
       setPrompt("");
-
-      setTimeout(() => {
-        setLoading(false);
-        const val = [
-          {
-            prompt: "How are you ?",
-            response: "I am good",
+      console.log(promptToSend, chatsTill);
+      const response = await axios.post(
+        apiContext.chatUrl,
+        {
+          prompt: promptToSend,
+          chats: chatsTill,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            prompt: "What's your name",
-            response: "I am an AI Chatbot",
-          },
-          {
-            prompt: "Hey",
-            response: "I am an AI Chatbot",
-          },
-        ];
-        setChat(val);
-      }, 3000);
+        }
+      );
+      console.log(response.data);
+      const val = [
+        ...chatsTill,
+        { prompt: promptToSend, response: response.data.message },
+      ];
+      setLoading(false);
+      setChat(val);
     }
   };
 
@@ -99,7 +111,10 @@ const Home = () => {
           </button>
           <button
             className="py-2 px-4 rounded-lg hover:bg-gray-200 dark:hover:bg-[#2F2F2F]"
-            onClick={() => navigate("/login")}
+            onClick={() => {
+              localStorage.clear();
+              navigate("/login");
+            }}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
           </button>
@@ -108,7 +123,7 @@ const Home = () => {
       <div className="py-8 text-transparent">Hello</div>
       <div className=" flex-grow h-full px-8 py-4 flex flex-col items-center">
         <div className=" flex-grow w-5/6 h-full flex justify-center overflow-y-auto">
-          <ChatInterface chat={chat} />
+          {chat && <ChatInterface chat={chat} />}
         </div>
       </div>
       <div className="py-10 bottom-0 text-4xl text-transparent">Hello</div>

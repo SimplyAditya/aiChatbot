@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="h-screen dark:bg-[#212121]">
       <ThemeContextProvider value={{ theme, switchTheme }}>
-        <Outlet />
+          <Outlet />
       </ThemeContextProvider>
     </div>
   );

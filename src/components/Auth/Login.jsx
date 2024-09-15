@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Alert from "../elements/Alert.jsx";
+import axios from "axios";
+import apiContext from "../../context/apiContext.js";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -13,20 +15,25 @@ const Login = () => {
   const [error, setError] = useState(false);
   const [toggleAlert, setToggleAlert] = useState(false);
 
-  const GoToHome = (event) => {
+  const GoToHome = async (event) => {
     event.preventDefault();
     if (email === "" || password === "") {
       setError(true);
       return;
     }
     setError(false);
-    if (email !== "aabcd" || password !== "abcd") {
+    const response = await axios.post(apiContext.signInUrl, {
+      email: email,
+      password: password,
+    });
+    if (response.data.type === "Success") {
+      localStorage.setItem("token", response.data.token);
+      navigate("/chat");
+    } else {
       setToggleAlert(true);
       return;
     }
     setToggleAlert(false);
-    // localStorage.setItem("jwt","aabcd");
-    navigate("/chat");
   };
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);

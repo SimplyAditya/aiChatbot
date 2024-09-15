@@ -25,12 +25,12 @@ const chat = async (chats, prompt, uid) => {
     const output = result.response.text();
     console.log(output);
     const chatData = {
-      prommpt: prompt,
+      prompt: prompt,
       response: output,
       uid: uid,
       timestamp: new Date(),
     };
-    await setDoc(doc(db, "Chats", uid), chatData);
+    await setDoc(doc(db, "Chats", `${uid}${new Date()}${prompt}`), chatData);
 
     return {
         type: "Success",
@@ -49,17 +49,16 @@ const getChats = async (uid) => {
   try {
     const q = query(
       collection(db, "Chats"),
-      where(uid, "==", uid),
+      where("uid", "==", uid),
       orderBy("timestamp", "asc")
     );
     const chatsSnapshot = await getDocs(q);
-    if(chatsSnapshot.empty){
-
-    }
+    console.log(uid)
     const chats = chatsSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
+    console.log(chats)
     return {
         type: "Success",
         message: chats,
