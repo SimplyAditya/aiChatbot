@@ -95,8 +95,8 @@ const Home = () => {
   });
 
   return (
-    <div className="flex flex-col overflow-y-auto overflow-x-hidden">
-      <div className="w-full fixed flex items-center justify-between  p-8 py-4 bg-white dark:bg-[#212121] dark:text-[#B4B4AF]">
+    <div className="flex flex-col overflow-y-auto overflow-x-hidden bg-white dark:bg-[#212121] dark:text-[#B4B4AF]">
+      <div className="w-full fixed flex items-center justify-between  p-8 py-4 ">
         <h1 className="text-xl shrink-0">AI Chatbot</h1>
         <div className="flex gap-2">
           <button

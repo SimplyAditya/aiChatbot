@@ -2,9 +2,9 @@ import React from "react";
 
 const ChatInterface = (prop) => {
   const design =
-    "p-4 dark:text-[#B4B4AF] text-xl max-w-3/4 bg-gray-200 dark:bg-[#2F2F2F] rounded-2xl";
+    "p-4 dark:text-[#B4B4AF] text-xl max-w-3/4 bg-gray-300 dark:bg-[#2F2F2F] rounded-2xl";
   return (
-    <div className="w-full h-full flex flex-col gap-4">
+    <div className="w-full h-full flex flex-col gap-4 ">
       {prop.chat.map((chat, index) => (
         <div key={index} className="flex flex-col gap-4 ">
           {chat.prompt && (
